@@ -15,4 +15,10 @@
 
 #timer {
     text-self: center;
+    padding: 50px;
+    margin: 50px;
+}
+#separateThem {
+    display: flex;
+    flex-direction: column;
 }

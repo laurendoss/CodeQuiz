@@ -1,13 +1,28 @@
 var quizQuestions = [
     {
-        question: "When is Luna's Birthday?",
-        choices: ["March 5", "November 8", "September 5", "October 21"],
-        answer: "September 5"
+        question: "What Country Does Sushi Come From?",
+        choices: ["Japan", "Italy", "The United States", "Thailand"],
+        answer: "Japan"
     },
     {
-        question: "When is Scout's Birthday?",
-        choices: ["December 7", "April 9", "August 23", "February 10"],
-        answer: "December 7"
+        question: "How Long is a Fortnight?",
+        choices: ["One Week", "Two Weeks", "One Night", "One Month"],
+        answer: "Two Weeks"
+    },
+    {
+        question: "What Is The Heimlich Maneuver?",
+        choices: ["A Complicated Aerial Stunt", "A Gymnastics Routine", "A Way to Stop People Choking", "A Soccer Move"],
+        answer: "A Way to Stop People Choking"
+    },
+    {
+        question: "What Does The Odometer Measure?",
+        choices: ["The Amount of Friction on The Tires", "The Odor of the Car", "The RPM", "The Amount of Distance a Car Has Traveled"],
+        answer: "The Amount of Distance a Car Has Traveled"
+    },
+    {
+        question: "What Type Of Cheese Is Actually Made Backwards?",
+        choices: ["Mozzarella", "Edam", "Cheddar", "Gouda"],
+        answer: "Edam"
     }
 ]
 
@@ -19,9 +34,10 @@ let startButton = document.getElementById("start");
 let cat = document.getElementById("choices");
 let cardBody = document.getElementById("question");
 let score = 0; 
+var sec = 30;
 let scoreCounter = document.createElement('p'); 
 scoreCounter2.innerHTML = "score " + score; 
-console.log(score)
+
 scoreCounter2.append(score); 
 
 
@@ -42,7 +58,7 @@ window.addEventListener("load", function () {
     startButton.addEventListener("click", function () {
         //startButton.attr("display") hide start button
         createQuestion()
-        var sec = 30;
+        
         var time = setInterval(myTimer, 1000);
         function myTimer() {
             document.getElementById('timer').innerHTML = sec + "sec left";
@@ -51,6 +67,7 @@ window.addEventListener("load", function () {
                 clearInterval(time);
                 alert("Time out!! :(");
             }
+            
         }
     })
 })
@@ -65,7 +82,6 @@ function createChoices(choices) {
             let userChoice = e.srcElement.innerHTML
             if (userChoice === quizQuestions[currentQuestion].answer) {
 
-                // add to score
                 console.log(score)
                 score ++; 
                 scoreCounter2.innerHTML=score; 
@@ -76,12 +92,16 @@ function createChoices(choices) {
                 createQuestion()
 
             } else {
-                // subtract from timer
+                sec = sec-10; 
 
                $(cardBody).empty(); 
                $(cat).empty(); 
                 currentQuestion++
                 createQuestion()
+            }
+
+            if (question === undefined) {
+                alert("Quiz is Over!")
             }
         })
 
