@@ -26,6 +26,14 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: grayscale;
   }
+  #primaryContainer {
+    padding-top: 150px;
+  }
+
+  #buttonDiv {
+    margin-top: 200px;
+    margin-left: 80px;
+  }
 
   @media only screen and (min-width: 768px) {
     .ui.container {
@@ -109,4 +117,5 @@ body {
   .ui.inverted.vertical.segment footer.ui.segment a {
     color: white;
   }
+  
   

@@ -31,15 +31,14 @@ var quizQuestions = [
 let currentQuestion = 0
 
 // html variables
-let startButton = document.getElementById("start");
-let cat = document.getElementById("choices");
-let cardBody = document.getElementById("question");
+let startButton = document.getElementById("buttonDiv");
+let quizChoices = document.getElementById("quizChoicesDiv");
+let cardBody = document.getElementById("quizQuestionsDiv");
+let scoreCount = document.getElementById("scoreDiv")
 let score = 0; 
 var sec = 30;
 let scoreCounter = document.createElement('p'); 
-scoreCounter2.innerHTML = "score " + score; 
 
-scoreCounter2.append(score); 
 
 
 
@@ -50,6 +49,7 @@ function createQuestion() {
     cardBody.append(question);
 
     createChoices(quizQuestions[currentQuestion].choices);
+    
 
 }
 
@@ -59,17 +59,22 @@ window.addEventListener("load", function () {
     startButton.addEventListener("click", function () {
         //startButton.attr("display") hide start button
         createQuestion()
+        scoreCounter.innerHTML = "score " + score; 
+
+scoreCount.append(scoreCounter); 
         
         var time = setInterval(myTimer, 1000);
         function myTimer() {
-            document.getElementById('timer').innerHTML = sec + "sec left";
+            document.getElementById('timerDiv').innerHTML = sec + "sec left";
             sec--;
             if (sec == -1) {
                 clearInterval(time);
-                alert("Time out!! :(");
+                // alert("Time out!! :(");
             }
             
         }
+        scoreCounter.innerHTML= "score " + score; 
+        
     })
 })
 // choices is our parameter and it expects an argument of a choice arrray from the quizQuestion array of objects
@@ -83,12 +88,14 @@ function createChoices(choices) {
             let userChoice = e.srcElement.innerHTML
             if (userChoice === quizQuestions[currentQuestion].answer) {
 
-                console.log(score)
+                            
                 score ++; 
-                scoreCounter2.innerHTML=score; 
-                console.log(score)
+
+                scoreCounter.innerHTML="score " + score; 
+                
+              
                 $(cardBody).empty(); 
-                $(cat).empty(); 
+                $(quizChoicesDiv).empty(); 
                 currentQuestion++
                 createQuestion()
 
@@ -96,7 +103,7 @@ function createChoices(choices) {
                 sec = sec-10; 
 
                $(cardBody).empty(); 
-               $(cat).empty(); 
+               $(quizChoicesDiv).empty(); 
                 currentQuestion++
                 createQuestion()
             }
@@ -106,7 +113,7 @@ function createChoices(choices) {
             }
         })
 
-        cat.append(choiceButton)
+        quizChoicesDiv.append(choiceButton)
     }
 
 }
